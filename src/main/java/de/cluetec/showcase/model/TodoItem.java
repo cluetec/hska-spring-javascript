@@ -7,6 +7,12 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.cluetec.showcase.utils.ObjectIdDeserializer;
+import de.cluetec.showcase.utils.ObjectIdSerializer;
+
 @Document(collection = "todos")
 public class TodoItem {
 
@@ -15,6 +21,8 @@ public class TodoItem {
 	}
 
 	@Id
+	@JsonSerialize(using = ObjectIdSerializer.class)
+	@JsonDeserialize(using = ObjectIdDeserializer.class)
 	private ObjectId id;
 
 	private String content;
