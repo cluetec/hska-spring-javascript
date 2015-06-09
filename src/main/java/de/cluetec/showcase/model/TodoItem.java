@@ -25,7 +25,7 @@ public class TodoItem {
 	@JsonDeserialize(using = ObjectIdDeserializer.class)
 	private ObjectId id;
 
-	private String content;
+	private String title;
 
 	private Status status;
 
@@ -43,12 +43,12 @@ public class TodoItem {
 		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Status getStatus() {
@@ -87,7 +87,7 @@ public class TodoItem {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + ((dueDate == null) ? 0 : dueDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -105,10 +105,10 @@ public class TodoItem {
 		if (getClass() != obj.getClass())
 			return false;
 		TodoItem other = (TodoItem) obj;
-		if (content == null) {
-			if (other.content != null)
+		if (title == null) {
+			if (other.title != null)
 				return false;
-		} else if (!content.equals(other.content))
+		} else if (!title.equals(other.title))
 			return false;
 		if (createdDate == null) {
 			if (other.createdDate != null)
@@ -137,7 +137,7 @@ public class TodoItem {
 
 	@Override
 	public String toString() {
-		return "TodoItem [id=" + id + ", content=" + content + ", status=" + status + ", createdDate=" + createdDate
+		return "TodoItem [id=" + id + ", title=" + title + ", status=" + status + ", createdDate=" + createdDate
 				+ ", dueDate=" + dueDate + ", tags=" + tags + "]";
 	}
 
