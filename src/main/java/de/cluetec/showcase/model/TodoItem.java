@@ -17,9 +17,12 @@ public class TodoItem {
 	@Id
 	private ObjectId id;
 
+	private String content;
+
 	private Status status;
 
 	private Date createdDate;
+
 	private Date dueDate;
 
 	private Set<String> tags;
@@ -30,6 +33,14 @@ public class TodoItem {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Status getStatus() {
@@ -68,6 +79,7 @@ public class TodoItem {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + ((dueDate == null) ? 0 : dueDate.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -85,6 +97,11 @@ public class TodoItem {
 		if (getClass() != obj.getClass())
 			return false;
 		TodoItem other = (TodoItem) obj;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
 		if (createdDate == null) {
 			if (other.createdDate != null)
 				return false;
@@ -112,8 +129,8 @@ public class TodoItem {
 
 	@Override
 	public String toString() {
-		return "TodoItem [id=" + id + ", status=" + status + ", createdDate=" + createdDate + ", dueDate=" + dueDate
-				+ ", tags=" + tags + "]";
+		return "TodoItem [id=" + id + ", content=" + content + ", status=" + status + ", createdDate=" + createdDate
+				+ ", dueDate=" + dueDate + ", tags=" + tags + "]";
 	}
 
 }
