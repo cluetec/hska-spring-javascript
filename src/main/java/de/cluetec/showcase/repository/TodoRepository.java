@@ -3,7 +3,6 @@ package de.cluetec.showcase.repository;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
@@ -29,8 +28,6 @@ public interface TodoRepository extends MongoRepository<TodoItem, ObjectId> {
 
 	List<TodoItem> findFirst10ByStatusOrderByDueDateAsc(Status status, Date date);
 
-	Stream<TodoItem> streamAllPaged(Pageable pageable);
-
-	@Query("{ 'status': 'TODO', 'createdDate': {'$lte': new Date('2014-01-01T00:00:00.000Z')} }")
+	@Query("{ 'status': 'TODO', 'createdDate': {'$lte': {'$date': '2014-01-01T00:00:00.000Z'} } }")
 	List<TodoItem> findOldTodos();
 }
