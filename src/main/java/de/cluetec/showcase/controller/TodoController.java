@@ -33,7 +33,7 @@ public class TodoController {
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public Page<TodoItem> getAllTodoItemsPaged(@RequestParam Pageable pageable) {
+	public Page<TodoItem> getAllTodoItemsPaged(@RequestParam(required = false) Pageable pageable) {
 		Page<TodoItem> page = todoService.getAllTodoItems(pageable);
 		return page;
 	}
