@@ -35,7 +35,7 @@ public class TodoRepositoryTests extends AbstractTodoAppTests {
 			todoRepository.save(item);
 		}
 
-		assertThat(todoRepository.count(), equalTo(100));
+		assertThat(todoRepository.count(), equalTo(100L));
 	}
 
 	@Test
