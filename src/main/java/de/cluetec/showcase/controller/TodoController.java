@@ -1,6 +1,5 @@
 package de.cluetec.showcase.controller;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +30,21 @@ public class TodoController {
 		this.todoService = todoService;
 	}
 
+//	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	@ResponseStatus(value = HttpStatus.OK)
+//	public Page<TodoItem> getAllTodoItemsPaged(@RequestParam(required = false) Pageable pageable) {
+//		Page<TodoItem> page = todoService.getAllTodoItems(pageable);
+//		return page;
+//	}
+
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public Page<TodoItem> getAllTodoItemsPaged(@RequestParam(required = false) Pageable pageable) {
-		Page<TodoItem> page = todoService.getAllTodoItems(pageable);
+	public Page<TodoItem> getAllTodoItemsFiltered(//
+			@RequestParam(required = false) String title,//
+			@RequestParam(required = false) Set<String> tags,//
+			@RequestParam(required = false) Pageable pageable) {
+		Page<TodoItem> page = todoService.getTodoItemsFiltered(title, tags, pageable);
 		return page;
-	}
-
-	@RequestMapping(method = RequestMethod.GET, params = {"tags"}, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseStatus(value = HttpStatus.OK)
-	public List<TodoItem> getAllTodoItemsByTags(@RequestParam Set<String> tags) {
-		List<TodoItem> list = todoService.getTodoItemsByTags(tags);
-		return list;
 	}
 
 	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import de.cluetec.showcase.exceptions.TodoAppIllegalActionException;
 import de.cluetec.showcase.exceptions.TodoItemNotFoundException;
@@ -28,9 +30,20 @@ public class TodoService {
 		return page;
 	}
 
-	public List<TodoItem> getTodoItemsByTags(Set<String> tags) {
-		List<TodoItem> list = todoRepository.findByTagsIn(tags);
-		return list;
+	public Page<TodoItem> getTodoItemsFiltered(String title, Set<String> tags, Pageable pageable) {
+		String regex = ".*";
+		if (!StringUtils.isEmpty(title)) {
+			regex = "^" + title;
+		}
+		if (pageable == null) {
+			pageable = new PageRequest(0, 10);
+		}
+
+		if (tags == null) {
+			return todoRepository.findByTitleRegex(regex, pageable);
+		}
+		
+		return todoRepository.findByTitleRegexAndTagsIn(regex, tags, pageable);
 	}
 
 	public TodoItem getTodoItemsById(String itemId) {
