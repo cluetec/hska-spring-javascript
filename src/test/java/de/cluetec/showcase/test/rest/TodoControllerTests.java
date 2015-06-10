@@ -23,7 +23,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.mock.http.MockHttpInputMessage;
 import org.springframework.mock.http.MockHttpOutputMessage;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -33,7 +32,6 @@ import de.cluetec.showcase.model.TodoItem;
 import de.cluetec.showcase.model.TodoItem.Status;
 import de.cluetec.showcase.test.AbstractTodoAppTests;
 
-@WebAppConfiguration
 public class TodoControllerTests extends AbstractTodoAppTests {
 
 	@Autowired

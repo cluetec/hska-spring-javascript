@@ -11,6 +11,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
@@ -28,6 +29,7 @@ import de.flapdoodle.embed.process.runtime.Network;
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @SpringApplicationConfiguration(classes = ApplicationConfiguration.class)
+@WebAppConfiguration
 public abstract class AbstractTodoAppTests {
 
 	private static final String DATABASE = "hska-showcase";
