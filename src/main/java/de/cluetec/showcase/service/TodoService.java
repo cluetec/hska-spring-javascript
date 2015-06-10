@@ -3,6 +3,7 @@ package de.cluetec.showcase.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,13 @@ public class TodoService {
 
 	public void deleteTodoItem(String itemId) {
 		todoRepository.delete(new ObjectId(itemId));
+	}
+
+	public Set<String> getAllTags() {
+		List<TodoItem> allItems = todoRepository.findAll();
+		Set<String> allTags = allItems.stream()//
+				.flatMap(item -> item.getTags().stream())//
+				.collect(Collectors.toSet());
+		return allTags;
 	}
 }
