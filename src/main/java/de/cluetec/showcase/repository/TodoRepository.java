@@ -17,7 +17,7 @@ public interface TodoRepository extends MongoRepository<TodoItem, ObjectId> {
 
 	List<TodoItem> findByStatus(Status status);
 	List<TodoItem> findByDueDateAfter(Date date);
-	List<TodoItem> findByTagsInIgnoreCase(Set<String> tags);
+	List<TodoItem> findByTagsIn(Set<String> tags);
 
 	/* For demo purposes */
 	List<TodoItem> findByCreatedDateAfter(Date date);

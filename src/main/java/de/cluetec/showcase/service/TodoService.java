@@ -27,7 +27,7 @@ public class TodoService {
 	}
 
 	public List<TodoItem> getTodoItemsByTags(Set<String> tags) {
-		List<TodoItem> list = todoRepository.findByTagsInIgnoreCase(tags);
+		List<TodoItem> list = todoRepository.findByTagsIn(tags);
 		return list;
 	}
 
