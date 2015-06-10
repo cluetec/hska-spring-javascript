@@ -1,6 +1,7 @@
 package de.cluetec.showcase.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.bson.types.ObjectId;
@@ -35,6 +36,9 @@ public class TodoItem {
 
 	private Set<String> tags;
 
+	public TodoItem() {
+		this.tags = new HashSet<>();
+	}
 	public ObjectId getId() {
 		return id;
 	}
