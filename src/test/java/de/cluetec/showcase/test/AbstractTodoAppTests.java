@@ -61,7 +61,7 @@ public abstract class AbstractTodoAppTests {
 	}
 
 	@Before
-	public void setup() throws UnknownHostException {
+	public void setupMongoDB() throws UnknownHostException {
 		MongoClient client = new MongoClient(HOST, PORT);
 		database = client.getDB(DATABASE);
 		database.dropDatabase();
