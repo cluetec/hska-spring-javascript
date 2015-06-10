@@ -39,6 +39,11 @@ public class TodoItem {
 	public TodoItem() {
 		this.tags = new HashSet<>();
 	}
+
+	public void addTag(String tag) {
+		this.tags.add(tag);
+	}
+
 	public ObjectId getId() {
 		return id;
 	}
