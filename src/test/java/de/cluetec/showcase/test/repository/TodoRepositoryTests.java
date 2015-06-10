@@ -1,4 +1,4 @@
-package de.cluetec.showcase.test;
+package de.cluetec.showcase.test.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,11 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.cluetec.showcase.model.TodoItem;
 import de.cluetec.showcase.model.TodoItem.Status;
 import de.cluetec.showcase.repository.TodoRepository;
+import de.cluetec.showcase.test.AbstractTodoAppTests;
 
 /**
  * These tests are for demo purposes. 
  */
-public class TodoRepositoryTests {
+public class TodoRepositoryTests extends AbstractTodoAppTests {
 
 	@Autowired
 	private TodoRepository todoRepository;
