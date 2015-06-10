@@ -19,6 +19,9 @@ public interface TodoRepository extends MongoRepository<TodoItem, ObjectId> {
 	List<TodoItem> findByDueDateAfter(Date date);
 	List<TodoItem> findByTagsIn(Set<String> tags);
 
+	Page<TodoItem> findByTitleRegex(String regex, Pageable pageable);
+	Page<TodoItem> findByTitleRegexAndTagsIn(String titleRegex, Set<String> tags, Pageable pageable);
+
 	/* For demo purposes */
 	List<TodoItem> findByCreatedDateAfter(Date date);
 
