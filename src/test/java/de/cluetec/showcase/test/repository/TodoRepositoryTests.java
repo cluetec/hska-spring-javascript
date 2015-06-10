@@ -1,6 +1,7 @@
 package de.cluetec.showcase.test.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -33,7 +34,7 @@ public class TodoRepositoryTests extends AbstractTodoAppTests {
 			todoRepository.save(item);
 		}
 
-		assertThat(todoRepository.count()).isEqualTo(100);
+		assertThat(todoRepository.count(), equalTo(100));
 	}
 
 	@Test
@@ -56,13 +57,13 @@ public class TodoRepositoryTests extends AbstractTodoAppTests {
 		Set<String> tags = new HashSet<>();
 		tags.add("tag1");
 
-		assertThat(todoRepository.findByTagsIn(tags)).containsOnly(item1, item2);
+		assertThat(todoRepository.findByTagsIn(tags), containsInAnyOrder(item1, item2));
 
 		tags.clear();
 		tags.add("tag2");
-		assertThat(todoRepository.findByTagsIn(tags)).containsOnly(item2);
+		assertThat(todoRepository.findByTagsIn(tags), containsInAnyOrder(item2));
 
 		tags.add("tag1");
-		assertThat(todoRepository.findByTagsIn(tags)).containsOnly(item1, item2);
+		assertThat(todoRepository.findByTagsIn(tags), containsInAnyOrder(item1, item2));
 	}
 }
