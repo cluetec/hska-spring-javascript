@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import de.cluetec.showcase.exceptions.TodoAppIllegalActionException;
 import de.cluetec.showcase.exceptions.TodoItemNotFoundException;
 import de.cluetec.showcase.model.TodoItem;
+import de.cluetec.showcase.model.TodoItem.Status;
 import de.cluetec.showcase.repository.TodoRepository;
 
 @Service
@@ -43,6 +44,9 @@ public class TodoService {
 	public TodoItem createTodoItem(TodoItem item) {
 		if (item.getCreatedDate() == null) {
 			item.setCreatedDate(new Date());
+		}
+		if (item.getStatus() == null) {
+			item.setStatus(Status.TODO);
 		}
 		return todoRepository.save(item);
 	}
