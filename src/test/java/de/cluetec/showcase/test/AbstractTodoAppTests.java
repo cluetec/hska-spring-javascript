@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -30,11 +31,12 @@ import de.flapdoodle.embed.process.runtime.Network;
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @SpringApplicationConfiguration(classes = ApplicationConfiguration.class)
 @WebAppConfiguration
+@ActiveProfiles({"test"})
 public abstract class AbstractTodoAppTests {
 
-	private static final String DATABASE = "hska-showcase";
+	private static final String DATABASE = "hska-showcase-tests";
 	private static String HOST = "localhost";
-	private static int PORT = 27017;
+	private static int PORT = 27072;
 
 	private static final MongodStarter MONGODB_STARTER = MongodStarter.getDefaultInstance();
 	private static MongodExecutable MONGOD_EXE;
