@@ -35,14 +35,9 @@ public class TodoService {
 		if (!StringUtils.isEmpty(title)) {
 			regex = "^" + title;
 		}
-		if (pageable == null) {
-			pageable = new PageRequest(0, 10);
-		}
-
 		if (tags == null) {
 			return todoRepository.findByTitleRegex(regex, pageable);
 		}
-		
 		return todoRepository.findByTitleRegexAndTagsIn(regex, tags, pageable);
 	}
 
