@@ -28,26 +28,26 @@ public class TagsControllerTests extends AbstractRestControllerTests {
 		item.setStatus(Status.TODO);
 		item.addTag("spring");
 
-		mockMvc.perform(post("/todos")//
+		mockMvc.perform(post("/api/todos")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isCreated());
 
 		item.addTag("rest");
 
-		mockMvc.perform(post("/todos")//
+		mockMvc.perform(post("/api/todos")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isCreated());
 
 		item.addTag("java");
 
-		mockMvc.perform(post("/todos")//
+		mockMvc.perform(post("/api/todos")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isCreated());
 
-		mockMvc.perform(get("/tags"))//
+		mockMvc.perform(get("/api/tags"))//
 				.andExpect(status().isOk())//
 				.andExpect(jsonPath("$.totalNumber", equalTo(3)))//
 				.andExpect(jsonPath("$.tags", hasItems("spring", "java", "rest")));
@@ -57,7 +57,7 @@ public class TagsControllerTests extends AbstractRestControllerTests {
 	public void testThatCreatingNewTagsDirectlyIsNotAllowed() throws HttpMessageNotWritableException, IOException,
 			Exception {
 
-		mockMvc.perform(post("/tags")//
+		mockMvc.perform(post("/api/tags")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content("new_tag"))//
 				.andExpect(status().isMethodNotAllowed());

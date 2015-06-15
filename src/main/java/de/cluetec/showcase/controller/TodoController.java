@@ -21,7 +21,7 @@ import de.cluetec.showcase.model.TodoItem;
 import de.cluetec.showcase.service.TodoService;
 
 @RestController
-@RequestMapping("/todos")
+@RequestMapping("/api/todos")
 public class TodoController {
 
 	private TodoService todoService;

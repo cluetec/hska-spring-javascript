@@ -35,7 +35,7 @@ public class TodoControllerTests extends AbstractRestControllerTests {
 		item.addTag("rest");
 		item.addTag("java");
 
-		mockMvc.perform(post("/todos")//
+		mockMvc.perform(post("/api/todos")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isCreated())//
@@ -49,7 +49,7 @@ public class TodoControllerTests extends AbstractRestControllerTests {
 
 	@Test
 	public void testThatGetAllTodoItemsReturnsSingleEmptyPageWhenDatabaseIsEmpty() throws Exception {
-		mockMvc.perform(get("/todos"))//
+		mockMvc.perform(get("/api/todos"))//
 				.andExpect(status().isOk())//
 				.andExpect(jsonPath("$.numberOfElements", equalTo(0)))//
 				.andExpect(jsonPath("$.totalElements", equalTo(0)))//
@@ -66,12 +66,12 @@ public class TodoControllerTests extends AbstractRestControllerTests {
 		item.addTag("rest");
 		item.addTag("java");
 
-		mockMvc.perform(post("/todos")//
+		mockMvc.perform(post("/api/todos")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isCreated());
 
-		mockMvc.perform(get("/todos"))//
+		mockMvc.perform(get("/api/todos"))//
 				.andExpect(status().isOk())//
 				.andExpect(jsonPath("$.numberOfElements", equalTo(1)))//
 				.andExpect(jsonPath("$.totalElements", equalTo(1)))//
@@ -90,7 +90,7 @@ public class TodoControllerTests extends AbstractRestControllerTests {
 		item.addTag("rest");
 		item.addTag("java");
 
-		MvcResult postResult = mockMvc.perform(post("/todos")//
+		MvcResult postResult = mockMvc.perform(post("/api/todos")//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isCreated())//
@@ -100,7 +100,7 @@ public class TodoControllerTests extends AbstractRestControllerTests {
 		item = entity(jsonStringAsBytes, TodoItem.class);
 
 		item.setCreatedDate(new Date());
-		mockMvc.perform(put("/todos/" + item.getId().toHexString())//
+		mockMvc.perform(put("/api/todos/" + item.getId().toHexString())//
 				.contentType(MediaType.APPLICATION_JSON)//
 				.content(json(item)))//
 				.andExpect(status().isConflict());

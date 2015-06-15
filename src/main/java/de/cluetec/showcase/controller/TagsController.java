@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.cluetec.showcase.service.TodoService;
 
 @RestController
-@RequestMapping("/tags")
+@RequestMapping("/api/tags")
 public class TagsController {
 
 	private TodoService todoService;
