@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import de.cluetec.showcase.utils.ObjectIdDeserializer;
 import de.cluetec.showcase.utils.ObjectIdSerializer;
 
-@Document(collection = "todos")
+@Document
 public class TodoItem {
 
 	public enum Status {
