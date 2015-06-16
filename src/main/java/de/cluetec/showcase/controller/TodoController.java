@@ -64,7 +64,7 @@ public class TodoController {
 
 	@RequestMapping(value = "/{itemId}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void deleteTodoItem(String itemId) {
+	public void deleteTodoItem(@PathVariable String itemId) {
 		todoService.deleteTodoItem(itemId);
 	}
 }
