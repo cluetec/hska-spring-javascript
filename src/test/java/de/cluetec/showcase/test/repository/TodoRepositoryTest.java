@@ -14,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import de.cluetec.showcase.model.TodoItem;
 import de.cluetec.showcase.model.TodoItem.Status;
 import de.cluetec.showcase.repository.TodoRepository;
-import de.cluetec.showcase.test.AbstractTodoAppTests;
+import de.cluetec.showcase.test.AbstractTodoAppTest;
 
 /**
  * These tests are for demo purposes. 
  */
-public class TodoRepositoryTests extends AbstractTodoAppTests {
+public class TodoRepositoryTest extends AbstractTodoAppTest {
 
 	@Autowired
 	private TodoRepository todoRepository;

@@ -32,7 +32,7 @@ import de.flapdoodle.embed.process.runtime.Network;
 @SpringApplicationConfiguration(classes = ApplicationConfiguration.class)
 @WebAppConfiguration
 @ActiveProfiles({"test"})
-public abstract class AbstractTodoAppTests {
+public abstract class AbstractTodoAppTest {
 
 	private static final String DATABASE = "hska-showcase-tests";
 	private static String HOST = "localhost";

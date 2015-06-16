@@ -14,9 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import de.cluetec.showcase.test.AbstractTodoAppTests;
+import de.cluetec.showcase.test.AbstractTodoAppTest;
 
-public abstract class AbstractRestControllerTests extends AbstractTodoAppTests {
+public abstract class AbstractRestControllerTest extends AbstractTodoAppTest {
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;

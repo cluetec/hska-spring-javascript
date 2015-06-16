@@ -18,7 +18,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import de.cluetec.showcase.model.TodoItem;
 import de.cluetec.showcase.model.TodoItem.Status;
 
-public class TagsControllerTests extends AbstractRestControllerTests {
+public class TagsControllerTest extends AbstractRestControllerTest {
 
 	@Test
 	public void testThatGetAllTagsReturnAllTagsAggregatedOverAllTodoItems() throws Exception {

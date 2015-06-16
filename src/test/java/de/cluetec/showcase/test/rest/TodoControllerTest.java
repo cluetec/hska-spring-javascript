@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import de.cluetec.showcase.model.TodoItem;
 import de.cluetec.showcase.model.TodoItem.Status;
 
-public class TodoControllerTests extends AbstractRestControllerTests {
+public class TodoControllerTest extends AbstractRestControllerTest {
 
 	@Test
 	public void testThatPostingTodoItemsReturnsCreatedStatusAndTheNewTodoItem() throws HttpMessageNotWritableException,
