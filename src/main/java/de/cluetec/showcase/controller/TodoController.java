@@ -41,7 +41,7 @@ public class TodoController {
 
 	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public TodoItem getAllTodoItemsById(String itemId) {
+	public TodoItem getAllTodoItemsById(@PathVariable String itemId) {
 		TodoItem item = todoService.getTodoItemsById(itemId);
 		return item;
 	}
