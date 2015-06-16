@@ -5,9 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,38 +29,31 @@ public class TodoController {
 		this.todoService = todoService;
 	}
 
-//	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public Page<TodoItem> getAllTodoItemsPaged(@RequestParam(required = false) Pageable pageable) {
-//		Page<TodoItem> page = todoService.getAllTodoItems(pageable);
-//		return page;
-//	}
-
-	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
 	public Page<TodoItem> getAllTodoItemsFiltered(//
 			@RequestParam(required = false) String title,//
 			@RequestParam(required = false) Set<String> tags,//
-			@PageableDefault(page=0, size=10, sort="id") Pageable pageable) {
+			Pageable pageable) {
 		Page<TodoItem> page = todoService.getTodoItemsFiltered(title, tags, pageable);
 		return page;
 	}
 
-	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)
-	public TodoItem getAllTodoItemsById(@PathVariable String itemId) {
+	public TodoItem getAllTodoItemsById(String itemId) {
 		TodoItem item = todoService.getTodoItemsById(itemId);
 		return item;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public TodoItem createTodoItem(@RequestBody TodoItem item) {
 		item = todoService.createTodoItem(item);
 		return item;
 	}
 
-	@RequestMapping(value = "/{itemId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{itemId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void modifyTodoItem(@PathVariable String itemId, @RequestBody TodoItem item) {
 		if (!itemId.equals(item.getId().toHexString())) {
@@ -71,9 +62,9 @@ public class TodoController {
 		todoService.modifyTodoItem(itemId, item);
 	}
 
-	@RequestMapping(value = "/{itemId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{itemId}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void deleteTodoItem(@PathVariable String itemId) {
+	public void deleteTodoItem(String itemId) {
 		todoService.deleteTodoItem(itemId);
 	}
 }
