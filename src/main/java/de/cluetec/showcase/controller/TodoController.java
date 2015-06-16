@@ -39,8 +39,8 @@ public class TodoController {
 		return page;
 	}
 
+	// GET /api/todos/123
 	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
-	@ResponseStatus(value = HttpStatus.OK)
 	public TodoItem getTodoItemById(@PathVariable String itemId) {
 		TodoItem item = todoService.getTodoItemsById(itemId);
 		return item;
