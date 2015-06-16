@@ -16,21 +16,23 @@ import de.cluetec.showcase.model.TodoItem.Status;
 public interface TodoRepository extends MongoRepository<TodoItem, ObjectId> {
 
 	List<TodoItem> findByStatus(Status status);
+
+	List<TodoItem> findByCreatedDateBetween(Date from, Date to);
+
+	@Query("{ 'status': 'TODO', 'createdDate': {'$lte': {'$date': '2014-01-01T00:00:00.000Z'} } }")
+	List<TodoItem> findOldTodos();
+
 	List<TodoItem> findByDueDateAfter(Date date);
+
 	List<TodoItem> findByTagsIn(Set<String> tags);
 
 	Page<TodoItem> findByTitleRegex(String regex, Pageable pageable);
+
 	Page<TodoItem> findByTitleRegexAndTagsIn(String titleRegex, Set<String> tags, Pageable pageable);
 
-	/* For demo purposes */
 	List<TodoItem> findByCreatedDateAfter(Date date);
-
-	List<TodoItem> findByCreatedDateBetween(Date from, Date to);
 
 	Page<TodoItem> findByStatus(Status status, Pageable pageable);
 
 	List<TodoItem> findFirst10ByStatusOrderByDueDateAsc(Status status, Date date);
-
-	@Query("{ 'status': 'TODO', 'createdDate': {'$lte': {'$date': '2014-01-01T00:00:00.000Z'} } }")
-	List<TodoItem> findOldTodos();
 }

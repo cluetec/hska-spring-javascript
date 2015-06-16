@@ -29,16 +29,6 @@ public class TodoController {
 		this.todoService = todoService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseStatus(value = HttpStatus.OK)
-	public Page<TodoItem> getAllTodoItemsFiltered(//
-			@RequestParam(required = false) String title,//
-			@RequestParam(required = false) Set<String> tags,//
-			Pageable pageable) {
-		Page<TodoItem> page = todoService.getTodoItemsFiltered(title, tags, pageable);
-		return page;
-	}
-
 	// GET /api/todos/123
 	@RequestMapping(value = "/{itemId}", method = RequestMethod.GET)
 	public TodoItem getTodoItemById(@PathVariable String itemId) {
@@ -51,6 +41,16 @@ public class TodoController {
 	public TodoItem createTodoItem(@RequestBody TodoItem item) {
 		item = todoService.createTodoItem(item);
 		return item;
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public Page<TodoItem> getAllTodoItemsFiltered(//
+			@RequestParam(required = false) String title,//
+			@RequestParam(required = false) Set<String> tags,//
+			Pageable pageable) {
+		Page<TodoItem> page = todoService.getTodoItemsFiltered(title, tags, pageable);
+		return page;
 	}
 
 	@RequestMapping(value = "/{itemId}", method = RequestMethod.PUT)
