@@ -67,4 +67,27 @@ public class TodoRepositoryTest extends AbstractTodoAppTest {
 		tags.add("tag1");
 		assertThat(todoRepository.findByTagsIn(tags), containsInAnyOrder(item1, item2));
 	}
+
+	@Test
+	public void testThatRepositoryFindsOldTodos() {
+		TodoItem item1 = new TodoItem();
+		item1.setTitle("Todo 1");
+		item1.setStatus(Status.TODO);
+		item1.setCreatedDate(new Date(0));
+		todoRepository.save(item1);
+
+		TodoItem item2 = new TodoItem();
+		item2.setTitle("Todo 2");
+		item2.setStatus(Status.TODO);
+		item2.setCreatedDate(new Date(0));
+		todoRepository.save(item2);
+
+		TodoItem item3 = new TodoItem();
+		item3.setTitle("Todo 3");
+		item3.setStatus(Status.TODO);
+		item3.setCreatedDate(new Date());
+		todoRepository.save(item3);
+
+		assertThat(todoRepository.findOldTodos(), containsInAnyOrder(item1, item2));
+	}
 }
