@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" ng-app="cluetec-webstack-app">
+<head>
+  <title>Sample Todo Application</title>
+
+  <link rel="stylesheet" href="lib/vendor.css">
+  <link rel="stylesheet" href="lib/bootstrap/dist/vendor/bootstrap.css">
+  <link rel="stylesheet" href="lib/main.css">
+</head>
+<body ng-controller="ApplicationCtrl as application">
+  <div ng-include="'templates/navigation.html'"></div>
+  <div ui-view class="main"></div>
+
+  <script src="lib/vendor.js" type="text/javascript"></script>
+  <script src="lib/bootstrap/dist/vendor/bootstrap.js" type="text/javascript"></script>
+  <script src="lib/main.js" type="text/javascript"></script>
+</body>
+</html>

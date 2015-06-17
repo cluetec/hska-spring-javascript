@@ -1,0 +1,21 @@
+.main {
+    padding: 0 20px 0px 20px;
+}
+
+.navbar-languages {
+  width: 100%;
+  display: table;
+}
+
+.navbar-languages-text {
+  float: left;
+}
+.navbar-languages-image {
+  float: right;
+}
+
+a:focus {
+    outline: none;
+}
+
+/*# sourceMappingURL=maps/main.css.map */

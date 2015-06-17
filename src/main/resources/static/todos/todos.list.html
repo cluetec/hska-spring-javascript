@@ -1,0 +1,18 @@
+<h1 translate>TODOS</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <table ng-table="todosCtrl.tableParams" show-filter="true" class="table table-hover">
+      <tr ng-repeat="item in $data" ng-click="todosCtrl.loadDetails(item)" style="cursor:pointer;">
+        <td data-title="'TODO_ITEM_ID' | translate" sortable="'id'" filter="{ 'id': 'text' }">{{item.id}}</td>
+        <td data-title="'TODO_ITEM_TITLE' | translate" sortable="'title'" filter="{ 'title': 'text' }">{{item.title}}</td>
+        <td data-title="'TODO_ITEM_CREATEDDATE' | translate" sortable="'createdDate'">{{item.createdDate | date : 'd.MM.y HH:mm:ss' }}</td>
+        <td data-title="'TODO_ITEM_DUEDATE' | translate" sortable="'dueDate'">{{item.dueDate | date : 'd.MM.y' }}</td>
+        <td data-title="'TODO_ITEM_TAGS' | translate" filter="{ 'tags': 'text' }">
+          {{ todosCtrl.formatTags(item.tags) }}
+        </td>
+        <td data-title="'TODO_ITEM_DETAILS' | translate"><button class="btn btn-primary" translate ng-click="todosCtrl.gotoDetails(item)">TODO_ITEM_DETAILS</button></td>
+      </tr>
+    </table>
+  </div>
+</div>

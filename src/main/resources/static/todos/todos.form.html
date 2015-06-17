@@ -1,0 +1,51 @@
+<div>
+  <h4 translate>TODO_NEW</h4>
+
+  <!-- col-md-4 col-md-offset-4 -->
+  <form name="todoForm" role="form" style="margin-bottom: 15px;" novalidate>
+
+    <div class="col-md-12">
+
+      <div class="form-group">
+        <label for="title" translate>TODO_ITEM_TITLE</label>
+        <input type="text" class="form-control" id="title" ng-model="todoCreationCtrl.item.title" required>
+      </div>
+      <div class="form-group">
+        <label for="tags" translate>TODO_ITEM_TAGS</label>
+        <tags-input ng-model="todoCreationCtrl.item.tags" id="tags" replace-spaces-with-dashes="false"
+                    placeholder="{{'TODOS_ADD_TAG' | translate}}">
+          <auto-complete source="todoCreationCtrl.loadAutoCompleteTags($query)" select-first-match="false"></auto-complete>
+        </tags-input>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="dueDate" translate>TODO_ITEM_DUEDATE</label>
+    </div>
+    <div class="col-md-4">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-options="todoCreationCtrl.dateOptions"
+               datepicker-popup="dd.MM.yyyy" ng-model="todoCreationCtrl.item.dueDate" id="dueDate"
+               is-open="todoCreationCtrl.dueDatePickerOpened" ng-required="true" close-text="Close"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="todoCreationCtrl.openDueDatePicker($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </p>
+    </div>
+
+    <div class="col-md-12">
+        <!-- Alert success which will be shown on success or on error -->
+        <div class="alert alert-success" ng-show="todoCreationCtrl.success">{{todoCreationCtrl.success}}</div>
+        <div class="alert alert-danger" ng-show="todoCreationCtrl.failure">{{todoCreationCtrl.failure}}</div>
+
+        <button type="button" class="btn btn-warning" ui-sref="todos.list" translate>BTN_BACK</button>
+
+        <button type="submit" class="btn btn-primary" ng-click="todoCreationCtrl.createTodo(todoCreationCtrl.item)"
+                ng-class="{'disabled': todosForm.$invalid}" translate>TODOS_NEW_SUBMIT
+        </button>
+    </div>
+  </form>
+
+</div>
+

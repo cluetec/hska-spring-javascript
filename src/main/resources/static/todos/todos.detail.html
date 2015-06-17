@@ -1,0 +1,61 @@
+<h1>{{'TODOS_DETAILS' | translate}} ({{todoDetailsCtrl.selectedItem.id}})</h1>
+
+<form name="todoForm" role="form" style="margin-bottom: 15px;" novalidate>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Alert success which will be shown on success or on error -->
+      <div class="alert alert-success" ng-show="todoDetailsCtrl.success">{{todoDetailsCtrl.success}}</div>
+      <div class="alert alert-danger" ng-show="todoDetailsCtrl.err">{{todoDetailsCtrl.err}}</div>
+    </div>
+
+    <div class="form-group col-md-12">
+      <label for="title" translate>TODO_ITEM_TITLE</label>
+      <input type="text" class="form-control" id="title" ng-model="todoDetailsCtrl.selectedItem.title" required>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="tags" translate>TODO_ITEM_TAGS</label>
+      <tags-input ng-model="todoDetailsCtrl.selectedItem.tags" id="tags" replace-spaces-with-dashes="false"
+                  placeholder="{{'TODOS_ADD_TAG' | translate}}"></tags-input>
+    </div>
+    <div class="form-group col-md-12">
+      <label for="dueDate" translate>TODO_ITEM_DUEDATE</label>
+    </div>
+    <div class="col-md-4">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-options="todoDetailsCtrl.dateOptions"
+               datepicker-popup="dd.MM.yyyy" ng-model="todoDetailsCtrl.selectedItem.dueDate"
+               is-open="todoDetailsCtrl.dueDatePickerOpened" ng-required="true" close-text="Close"/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="todoDetailsCtrl.openDueDatePicker($event)">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+      </p>
+    </div>
+
+    <div class="form-group col-md-12">
+      <label for="createdDate" translate>TODO_ITEM_CREATEDDATE</label>
+    </div>
+    <div class="col-md-4">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-options="todoDetailsCtrl.dateOptions" id="createdDate"
+               datepicker-popup="dd.MM.yyyy HH:mm:ss" ng-model="todoDetailsCtrl.selectedItem.createdDate"
+               is-open="false" ng-required="true" close-text="Close"/>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <button type="button" class="btn btn-warning" ui-sref="todos.list" translate>BTN_BACK</button>
+
+      <button type="submit" class="btn btn-primary" ng-class="{'disabled': todoForm.$invalid}"
+              ng-click="todoDetailsCtrl.updateTodo(todoDetailsCtrl.selectedItem)" translate>TODOS_UPDATE</button>
+    </div>
+
+    <div class="col-xs-2 col-xs-offset-6">
+      <button type="button" class="btn btn-danger" ng-click="todoDetailsCtrl.deleteTodo(todoDetailsCtrl.selectedItem)"
+              translate>BTN_DELETE</button>
+    </div>
+  </div>
+  </form>
+</div>
